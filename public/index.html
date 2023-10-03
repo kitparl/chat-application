@@ -15,6 +15,8 @@
          integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
          crossorigin="anonymous"
       />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css
+      ">
       <link rel="stylesheet" href="css/style.css" />
       <title>Chat Application by Pranshu</title>
    </head>
@@ -26,6 +28,22 @@
             </h1>
          </header>
          <main class="join-main">
+            <section id="chatSelectType">
+            <div  style="display: flex; justify-content: space-between;">
+
+               <div>
+                  <h1>Create Chat</h1>
+                  <span class="mdi mdi-email-plus hover-icon" style="margin-left: 10px;" onclick="chatTypeSelection(1)"></span>
+
+               </div>
+               <div>
+                  <h1>Join Chat</h1>
+                  <span class="mdi mdi-chat-processing-outline hover-icon" onclick="chatTypeSelection(2)" style="margin-right: 10px;"></span>
+               </div>
+            </div>
+         </section>
+         <section id="chatSelectCreate">
+
             <form action="chat.html">
                <div class="form-control">
                   <label style="color: #f5f6f7" for="username">Username</label>
@@ -38,18 +56,70 @@
                   />
                </div>
                <div class="form-control">
-                  <label style="color: #f5f6f7" for="username">Enter Chat Key</label>
+                  <label style="color: #f5f6f7" for="hexInput">Generate Chat Key</label>
+                  <input 
+                  type="text" 
+                  id="chat-key" 
+                  name="generatedChatKey"
+                  readonly>
+                  <button onclick="generateAndCopyHex(event)">Generate & Copy</button>
+                  <p id="share-code-msg">Share this code to the other user</p>
+               </div>
+
+                              <div id="chat-key-div" class="form-control">
+                  <label style="color: #f5f6f7" for="chat-key">Enter Chat Key</label>
+                  <input
+                     type="text"
+                     name="enteredChatKey"
+                     id="chat-key"
+                     placeholder="Enter Key..."
+                  />
+               </div>
+
+
+               <button type="submit" class="btn">Join Chat</button>
+                        </form>
+         </section>
+
+         <section id="chatSelectJoin">
+
+            <form action="chat.html">
+               <div class="form-control">
+                  <label style="color: #f5f6f7" for="username">Username</label>
                   <input
                      type="text"
                      name="username"
                      id="username"
-                     placeholder="Enter key..."
+                     placeholder="Enter username..."
                      required
                   />
                </div>
-               <button type="submit" class="btn">Create Chat</button>
+               <div class="form-control">
+                  <label style="color: #f5f6f7" for="hexInput">Generate Chat Key</label>
+                  <input 
+                  type="text" 
+                  id="chat-key" 
+                  name="generatedChatKey"
+                  readonly>
+                  <button onclick="generateAndCopyHex(event)">Generate & Copy</button>
+                  <p id="share-code-msg">Share this code to the other user</p>
+               </div>
+
+                              <div id="chat-key-div" class="form-control">
+                  <label style="color: #f5f6f7" for="chat-key">Enter Chat Key</label>
+                  <input
+                     type="text"
+                     name="enteredChatKey"
+                     id="chat-key"
+                     placeholder="Enter Key..."
+                  />
+               </div>
+
+
                <button type="submit" class="btn">Join Chat</button>
-            </form>
+                        </form>
+         </section>
+
          </main>
          <footer style="margin-top: 25px">
             <div style="text-align: center" class="credit">
@@ -59,3 +129,46 @@
       </div>
    </body>
 </html>
+<script>
+   document.getElementById("chatSelectCreate").style.display="none";
+   document.getElementById("chatSelectJoin").style.display="none";
+
+    function generateAndCopyHex(event) {
+      event.preventDefault()
+      const characters = '0123456789ABCDEF';
+      let result = '';
+      for (let i = 0; i < 16; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        result += characters[randomIndex];
+      }
+      document.getElementById('chat-key').value = result;
+      document.getElementById("share-code-msg").style.visibility='visible';
+      document.getElementById("chat-key-div").style.display='none';
+      // document.getElementById("enteredChatKey").value = null;
+
+
+
+      // Copy the generated text to the clipboard
+      // const inputElement = document.getElementById('hexInput');
+      // inputElement.select();
+      // document.execCommand('copy');
+    }
+
+    function chatTypeSelection(val){
+      switch(val){
+         case 1 : 
+            document.getElementById("chatSelectType").style.display="none";
+            document.getElementById("chatSelectJoin").style.display="none";
+            document.getElementById("chatSelectCreate").style.visibility="visible";
+console.log(1);
+            
+            break;
+         case 2 : 
+            document.getElementById("chatSelectType").style.display="none";
+            document.getElementById("chatSelectCreate").style.display="none";
+            document.getElementById("chatSelectJoin").style.visibility="visible";
+         console.log(2);
+            break;
+      }
+    }
+</script>

@@ -3,19 +3,26 @@ const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
 
+
 // get username and room from URl
-const { username, room } = Qs.parse(location.search, {
+const { username, generatedChatKey, enteredChatKey } = Qs.parse(location.search, {
    ignoreQueryPrefix: true,
 });
 
+let chatKey = generatedChatKey !== null ? generatedChatKey : enteredChatKey;
+console.log(generatedChatKey);
+
+console.log('[ chatKey ] >', chatKey)
+
 const socket = io();
 
+
 // Join chatroom
-socket.emit('joinRoom', { username, room });
+socket.emit('joinRoom', { username, chatKey });
 
 // get room and users
-socket.on('roomUsers', ({ room, users }) => {
-   outputRoomName(room);
+socket.on('roomUsers', ({ generatedChatKey, users }) => {
+   outputRoomName(generatedChatKey);
    outputUsers(users);
 });
 

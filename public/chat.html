@@ -15,7 +15,7 @@
          crossorigin="anonymous"
       />
       <link rel="stylesheet" href="css/style.css" />
-      <title>Chat Application by Pranshu</title>
+      <title>Chat Application Pranshu</title>
    </head>
    <body>
       <div class="chat-container">
@@ -23,11 +23,11 @@
             <h1 style="color: #f5f6f7">
                <i class="fas fa-comment-dots"></i> Chat Pannel
             </h1>
-            <a href="index.html" class="btn">Leave Room</a>
+            <a href="index.html" class="btn">Leave Chat</a>
          </header>
          <main class="chat-main">
             <div class="chat-sidebar">
-               <h3><i class="fas fa-comments"></i> Room Name:</h3>
+               <h3><i class="fas fa-comments"></i> Chat Key:</h3>
                <h2 id="room-name"></h2>
                <h3><i class="fas fa-users"></i> Users</h3>
                <ul id="users"></ul>
@@ -55,12 +55,13 @@
             &copy; Pranshu Singh Bisht
          </div>
       </footer>
+
+      <script
+         src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js"
+         integrity="sha512-aTKlYRb1QfU1jlF3k+aS4AqTpnTXci4R79mkdie/bp6Xm51O5O3ESAYhvg6zoicj/PD6VYY0XrYwsWLcvGiKZQ=="
+         crossorigin="anonymous"
+      ></script>
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="js/script.js"></script>
    </body>
-   </html>
-   <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js"
-      integrity="sha512-aTKlYRb1QfU1jlF3k+aS4AqTpnTXci4R79mkdie/bp6Xm51O5O3ESAYhvg6zoicj/PD6VYY0XrYwsWLcvGiKZQ=="
-      crossorigin="anonymous"
-   ></script>
-   <script src="/socket.io/socket.io.js"></script>
-   <script src="js/script.js"></script>
+</html>

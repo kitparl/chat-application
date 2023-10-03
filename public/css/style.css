@@ -210,6 +210,32 @@ input:focus {
    background: #b1d8eb;
 }
 
+#share-code-msg{
+visibility: hidden;
+}
+
+.hover-icon{
+   font-size: 100px;
+   cursor: pointer;
+   transition: transform 0.3s ease;
+
+}
+
+.hover-icon :hover{
+   transform: scale(1.2);
+   z-index: 1;
+   
+}
+
+#chatSelectCreate{
+   visibility: hidden;
+}
+
+#chatSelectJoin{
+   visibility: hidden;
+}
+
+
 @media (max-width: 700px) {
    .chat-main {
       display: block;
