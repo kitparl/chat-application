@@ -228,11 +228,13 @@ visibility: hidden;
 }
 
 #chatSelectCreate{
-   visibility: hidden;
+   /* visibility: hidden; */
+   display: none;
 }
 
 #chatSelectJoin{
-   visibility: hidden;
+   /* visibility: hidden; */
+   display: none;
 }
 
 

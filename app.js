@@ -22,26 +22,26 @@ const botName = 'Chat Bot';
 
 // run when client connects
 io.on('connection', (socket) => {
-   socket.on('joinRoom', ({ username, room }) => {
-      const user = userJoin(socket.id, username, room);
+   socket.on('joinRoom', ({ username, chatKey }) => {
+      const user = userJoin(socket.id, username, chatKey);
 
-      socket.join(user.room);
+      socket.join(user.chatKey);
 
       // welcome current user
       socket.emit('message', formatMessage(botName, 'Welcome to Chat App!'));
 
       // broadcast when a user connects
       socket.broadcast
-         .to(user.room)
+         .to(user.chatKey)
          .emit(
             'message',
             formatMessage(botName, `${user.username} has joined the chat!`)
          );
 
       // send users and room info
-      io.to(user.room).emit('roomUsers', {
-         room: user.room,
-         users: getRoomUsers(user.room),
+      io.to(user.chatKey).emit('roomUsers', {
+        chatKey: user.chatKey,
+         users: getRoomUsers(user.chatKey),
       });
    });
 
@@ -49,7 +49,7 @@ io.on('connection', (socket) => {
    socket.on('chatMessage', (msg) => {
       const user = getCurrentUser(socket.id);
 
-      io.to(user.room).emit('message', formatMessage(user.username, msg));
+      io.to(user.chatKey).emit('message', formatMessage(user.username, msg));
    });
 
    // runs when clients disconnects
@@ -57,15 +57,15 @@ io.on('connection', (socket) => {
       const user = userLeave(socket.id);
 
       if (user) {
-         io.to(user.room).emit(
+         io.to(user.chatKey).emit(
             'message',
             formatMessage(botName, `${user.username} has left the chat!`)
          );
 
          // send users and room info
-         io.to(user.room).emit('roomUsers', {
-            room: user.room,
-            users: getRoomUsers(user.room),
+         io.to(user.chatKey).emit('roomUsers', {
+          chatKey: user.chatKey,
+            users: getRoomUsers(user.chatKey),
          });
       }
    });

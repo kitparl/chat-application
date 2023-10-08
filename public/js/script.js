@@ -9,9 +9,11 @@ const { username, generatedChatKey, enteredChatKey } = Qs.parse(location.search,
    ignoreQueryPrefix: true,
 });
 
-let chatKey = generatedChatKey !== null ? generatedChatKey : enteredChatKey;
+let chatKey = generatedChatKey !== undefined ? generatedChatKey : enteredChatKey;
 console.log(generatedChatKey);
 
+console.log('[ generatedChatKey ] >', generatedChatKey)
+console.log('[ enteredChatKey ] >', enteredChatKey)
 console.log('[ chatKey ] >', chatKey)
 
 const socket = io();
@@ -21,16 +23,14 @@ const socket = io();
 socket.emit('joinRoom', { username, chatKey });
 
 // get room and users
-socket.on('roomUsers', ({ generatedChatKey, users }) => {
-   outputRoomName(generatedChatKey);
+socket.on('roomUsers', ({ chatKey, users }) => {
+   outputRoomName(chatKey);
    outputUsers(users);
 });
 
 // message from server
 socket.on('message', (message) => {
-   // console.log(message);
    outputMessage(message);
-
    // scroll down
    chatMessages.scrollTop = chatMessages.scrollHeight;
 });
