@@ -3,9 +3,7 @@ const users = [];
 // join user to chat
 function userJoin(id, username, chatKey) {
    const user = { id, username, chatKey };
-
    users.push(user);
-
    return user;
 }
 
