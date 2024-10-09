@@ -1,11 +1,8 @@
 # ChatApplication
 
-**Version:** 1.0.0  
-**Author:** Pranshu Singh Bisht  
-
 ## Description
 
-ChatApplication is a simple, real-time chat application built using Node.js and Express. It uses `socket.io` for real-time, bidirectional communication between clients and the server. The application supports multiple users interacting in real-time and displays timestamps for messages using the `moment-timezone` library. The project also includes `@mdi/font` for utilizing Material Design Icons to enhance the user interface.
+ChatApplication is a simple, real-time chat application built using Node.js and Express. It uses `socket.io` for real-time, bidirectional communication between clients and the server. The application supports multiple users interacting in real-time and displays timestamps for messages using the `moment-timezone` library.
 
 ## Features
 - Real-time messaging between multiple users
